@@ -15,7 +15,7 @@ public class AvatarTargetPoints : MonoBehaviour
 
     private void Start()
     {
-        //InvokeRepeating("AvatarWalking", 1f, 20f);
+        InvokeRepeating("AvatarWalking", 1f, 20f);
         meshAgent = GetComponent<NavMeshAgent>();
        
     }

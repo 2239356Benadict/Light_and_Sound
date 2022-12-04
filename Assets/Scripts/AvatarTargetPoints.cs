@@ -9,14 +9,36 @@ public class AvatarTargetPoints : MonoBehaviour
     public GameObject[] targetPoints; // Target points for avatar to move
     public Animator animator;
     public bool moveToTarget;
+    public bool reachedTarget;
     public float moveToTargetSpeed;
+
+    public float startTime;
+    public float animRepeatTime;
+
+    public AudioClip[] avatarAudioClips;
+    public AudioClip[] converseAudioClips;
+    public AudioSource avatarAudioSource;
+    public AudioSource avatarAudioSourceFoot;
+
 
     public NavMeshAgent meshAgent;
 
     private void Start()
     {
-        InvokeRepeating("AvatarWalking", 1f, 20f);
+        InvokeRepeating("AvatarWalking", startTime, animRepeatTime);
         meshAgent = GetComponent<NavMeshAgent>();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            int randomClip = Random.Range(0, converseAudioClips.Length-1);
+            avatarAudioSource.clip = converseAudioClips[randomClip];
+            avatarAudioSource.Play();
+            Debug.Log("Playing converse" + other.tag);
+        }
        
     }
     void Update()
@@ -27,6 +49,7 @@ public class AvatarTargetPoints : MonoBehaviour
         }
     }
 
+    #region Avatar Methods
     /// <summary>
     /// Method to move the avatar to the target points
     /// </summary>
@@ -35,17 +58,22 @@ public class AvatarTargetPoints : MonoBehaviour
         GameObject currentTarget = targetPoints[Random.Range(0, 7)];
         Debug.Log(currentTarget.name);
         meshAgent.destination = currentTarget.transform.position;
-        if(gameObject.transform.position != currentTarget.transform.position)
+        if (gameObject.transform.position != currentTarget.transform.position)
         {
             gameObject.transform.LookAt(currentTarget.transform);
             meshAgent.speed = moveToTargetSpeed;
             //gameObject.transform.Translate(Vector3.forward * moveToTargetSpeed * Time.deltaTime);
             animator.Play("Walking");
-
+            avatarAudioSourceFoot.clip = avatarAudioClips[0];
+            avatarAudioSource.Play();
+            
         }
-        else if(gameObject.transform.position == currentTarget.transform.position)
+        else if ((gameObject.transform.position.x - currentTarget.transform.position.x) < 0.8f)
         {
-            animator.Play("Idle");
+            animator.Play("Waving");
+            reachedTarget = true;
         }
     }
+    #endregion
+
 }

@@ -10,17 +10,12 @@ public class ParticleSystemIntervalPlay : MonoBehaviour
     public AudioSource[] confettiBlastAudio;
    
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        InvokeRepeating("PlayParticleWithAnInterval", 1f, 18f);
+        InvokeRepeating("PlayParticleWithAnInterval", 3f, 30f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PlayParticleWithAnInterval()
     {

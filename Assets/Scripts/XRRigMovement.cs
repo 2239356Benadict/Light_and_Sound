@@ -1,3 +1,8 @@
+// Tested in unity editor and Oculus Quest
+// Copyright (c) 2239356@swanseauniversity. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Dated: 05/12/2020
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +47,7 @@ public class XRRigMovement : MonoBehaviour
             isRigMoving = false;
             //lastPosition = currentPosition;
 
-
+            playerAudioSource.Stop();
         }
         else if (currentPosition != lastPosition)
         {

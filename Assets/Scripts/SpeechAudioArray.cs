@@ -1,3 +1,4 @@
+// This script is used to play the audio sequentially. 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,10 @@ public class SpeechAudioArray : MonoBehaviour
         StartCoroutine("playAudioSequentially");
     }
     
-
+    /// <summary>
+    /// All the audio in the array list will be played in sequence.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator playAudioSequentially()
     {
         yield return new WaitForSeconds(5);
@@ -21,19 +25,16 @@ public class SpeechAudioArray : MonoBehaviour
         //1.Loop through each AudioClip
         for (int i = 0; i < speechAudio.Length; i++)
         {
-            //2.Assign current AudioClip to audiosource
+
             speakerAudioSource.clip = speechAudio[i];
 
-            //3.Play Audio
             speakerAudioSource.Play();
 
-            //4.Wait for it to finish playing
             while (speakerAudioSource.isPlaying)
             {
                 yield return null;
             }
 
-            //5. Go back to #2 and play the next audio in the adClips array
         }
     }
 }

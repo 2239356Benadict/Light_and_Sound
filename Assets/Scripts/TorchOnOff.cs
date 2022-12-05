@@ -1,5 +1,7 @@
-// This script is used to turn on/off the torch while controllor trigger button
-//Tested in unity editor and Oculus Quest
+// This script is used to turn on/off the torch while controllor trigger button.
+// Tested in unity editor and Oculus Quest
+// Copyright (c) 2239356@swanseauniversity. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 // Dated: 05/12/2020
 
 using System.Collections;
@@ -14,6 +16,7 @@ public class TorchOnOff : MonoBehaviour
     
     public HandScript handScriptTrigger;
 
+    #region Monobehaviour Methods
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Hand")
@@ -34,12 +37,19 @@ public class TorchOnOff : MonoBehaviour
         
     }
 
+
     private void Update()
     {
         TorchOn();
     }
-   
-   
+    #endregion
+
+
+    #region Custom Methods   
+
+    /// <summary>
+    /// Method that activate the game objects required for the light to turn on.
+    /// </summary>
     public void TorchOn()
     {
         if (handScriptTrigger.triggerButtonPressed == true && grabbedTorch)
@@ -48,11 +58,13 @@ public class TorchOnOff : MonoBehaviour
             
             Debug.Log("TorchON");
         }
-        else if (!handScriptTrigger.triggerButtonPressed)
+        else if (!handScriptTrigger.triggerButtonPressed && grabbedTorch)
         {
             onObject.SetActive(false);
 
             Debug.Log("TorchOFF");
         }
     }
+
+    #endregion
 }

@@ -1,3 +1,7 @@
+// This script is used to turn on/off the torch while controllor trigger button
+//Tested in unity editor and Oculus Quest
+// Dated: 05/12/2020
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

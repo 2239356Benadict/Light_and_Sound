@@ -17,7 +17,6 @@ public class SwitchOnOff : MonoBehaviour
             onLightObject.SetActive(true);
             gameObject.transform.Translate(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.0111f, gameObject.transform.position.z));
         }
-        
     }
   
 }

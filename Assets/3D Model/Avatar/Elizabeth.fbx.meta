@@ -8,6 +8,16 @@ ModelImporter:
     second: mixamo.com
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ch26_body
+    second: {fileID: 2100000, guid: 7ee77449bf7c0cf408cfd3f90c94497e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ch26_hair
+    second: {fileID: 2100000, guid: c66a453ac47d4db46bb22074fc2cb3c4, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch26_1001_Diffuse

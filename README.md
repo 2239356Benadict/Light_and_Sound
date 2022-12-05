@@ -12,7 +12,7 @@ The application is a simple interactable environment which users can walk around
 
 ### Video
   
-  [<img src="https://github.com/2239356Benadict/Assignment1/blob/main/VideoThumpLandS.png" width="1000" height="" />](https://youtu.be/aVLRVXqnPks)
+  [<img src="https://github.com/2239356Benadict/Assignment1/blob/main/VideoThumpLandS.png" width="1000" height="" />](https://youtu.be/k_wdLfSWxVY)
  
 ### Additional Feature 1: Torch and Switch
 <p align="justify">

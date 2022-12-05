@@ -13,7 +13,10 @@ public class FireCampStart : MonoBehaviour
     public ParticleSystem fireCampParticle;
     public GameObject[] gameObjectsToBeEnabled;
 
-
+    /// <summary>
+    /// Method to enable gameobjects
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "FireSpark")

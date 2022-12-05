@@ -2,7 +2,7 @@
 // Copyright (c) 2239356@swanseauniversity. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // Dated: 05/12/2020
-
+// Script for changing animation.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +18,10 @@ public class AnimationControllor : MonoBehaviour
         InvokeRepeating("AnimationChange", 10, 30);
     }
 
-
+    /// <summary>
+    /// Method to invoke different animation in the array.
+    /// </summary>
+    /// <param name="waitBefore"></param>
     public void AnimationChange(float waitBefore)
     {
  

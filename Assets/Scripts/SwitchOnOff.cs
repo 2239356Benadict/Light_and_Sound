@@ -12,6 +12,11 @@ public class SwitchOnOff : MonoBehaviour
     public bool grabbedSwitch;
     public bool lightState;
 
+
+    /// <summary>
+    /// Enable gameobjects
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Hand")

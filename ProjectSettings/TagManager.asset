@@ -8,6 +8,7 @@ TagManager:
   - SitPoint
   - TargetPoint
   - Hand
+  - FireSpark
   layers:
   - Default
   - TransparentFX

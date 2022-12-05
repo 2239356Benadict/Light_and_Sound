@@ -28,9 +28,7 @@ public class AvatarTargetPoints : MonoBehaviour
     {
         meshAgent = GetComponent<NavMeshAgent>();
 
-        InvokeRepeating("AvatarWalking", startTime, animRepeatTime);
-
-        
+        InvokeRepeating("AvatarWalking", startTime, animRepeatTime); 
 
     }
 
@@ -45,7 +43,7 @@ public class AvatarTargetPoints : MonoBehaviour
         }
         if (other.gameObject.tag == "SitPoint")
         {
-            animator.Play("Stand To Sit");
+            animator.Play("Idle");
         }
         else if (other.gameObject.tag == "TargetPoint")
         {
@@ -59,10 +57,10 @@ public class AvatarTargetPoints : MonoBehaviour
 
     private void Update()
     {
-        if (tRP == 3)
-        {
-            Invoke("StandToSit", 1f);
-        }
+        //if (tRP == 3)
+        //{
+        //    Invoke("StandToSit", 1f);
+        //}
     }
 
 
@@ -102,8 +100,6 @@ public class AvatarTargetPoints : MonoBehaviour
     }
     private void StandToSit()
     {
-        
-
 
             meshAgent.destination = seatPosition.transform.position;
             gameObject.transform.LookAt(seatPosition.transform);
@@ -111,8 +107,7 @@ public class AvatarTargetPoints : MonoBehaviour
             //gameObject.transform.Translate(Vector3.forward * moveToTargetSpeed * Time.deltaTime);
             animator.Play("Walking");
             avatarAudioSourceFoot.clip = avatarAudioClips[0];
-            avatarAudioSource.Play();
-        
+            avatarAudioSource.Play(); 
         
     }
     #endregion

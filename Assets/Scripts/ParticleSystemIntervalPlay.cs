@@ -13,7 +13,7 @@ public class ParticleSystemIntervalPlay : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("PlayParticleWithAnInterval", 3f, 30f);
+        InvokeRepeating("PlayParticleWithAnInterval", 3f, 60f);
     }
 
 

@@ -20,7 +20,9 @@ public class ParticleSystemIntervalPlay : MonoBehaviour
         InvokeRepeating("PlayParticleWithAnInterval", 3f, 60f);
     }
 
-
+    /// <summary>
+    /// Particle and audio for confetti activation
+    /// </summary>
     public void PlayParticleWithAnInterval()
     {
         foreach(ParticleSystem celeb in celebrationParicles)

@@ -15,10 +15,12 @@ public class HandScript : MonoBehaviour
     private float currentTriggerValue;
     public float speed;
 
+    public bool triggerButtonPressed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        triggerButtonPressed = false;
     }
 
     // Update is called once per frame
@@ -33,13 +35,13 @@ public class HandScript : MonoBehaviour
         { 
             currentGripValue = Mathf.MoveTowards(currentGripValue, gripTarget, Time.deltaTime * speed);
             handAnimator.SetFloat(animParamenterNameGrip, currentGripValue);
-            Debug.Log("Grip");
+            //Debug.Log("Grip");
         }
         if(currentTriggerValue != triggerTarget)
         { 
             currentTriggerValue = Mathf.MoveTowards(currentTriggerValue, triggerTarget, Time.deltaTime * speed);
             handAnimator.SetFloat(animParamenterNameTrigger, currentTriggerValue);
-            Debug.Log("Trigger");
+            //Debug.Log("Trigger");
         }
     }
 
@@ -51,5 +53,14 @@ public class HandScript : MonoBehaviour
     public void SetTrigger(float pressvalue)
     {
         triggerTarget = pressvalue;
+        if(pressvalue != 0f)
+        {
+
+            triggerButtonPressed = true;
+        }
+        else
+        {
+            triggerButtonPressed = false;
+        }
     }
 }

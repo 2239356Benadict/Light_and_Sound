@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class AvatarTargetPoints : MonoBehaviour
 {
-    public GameObject[] avatarToMove; // Avatar gameobjects
-    public GameObject[] targetPoints; // Target points for avatar to move
+    public GameObject seatPosition;     // Avatar seat position
+    public GameObject[] targetPoints;   // Target points for avatar to move
     public Animator animator;
     public bool moveToTarget;
     public bool reachedTarget;
@@ -20,13 +20,17 @@ public class AvatarTargetPoints : MonoBehaviour
     public AudioSource avatarAudioSource;
     public AudioSource avatarAudioSourceFoot;
 
-
+    public GameObject carLookPoint;
+    public int tRP;
     public NavMeshAgent meshAgent;
 
     private void Start()
     {
-        InvokeRepeating("AvatarWalking", startTime, animRepeatTime);
         meshAgent = GetComponent<NavMeshAgent>();
+
+        InvokeRepeating("AvatarWalking", startTime, animRepeatTime);
+
+        
 
     }
 
@@ -34,20 +38,34 @@ public class AvatarTargetPoints : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            int randomClip = Random.Range(0, converseAudioClips.Length-1);
+            int randomClip = Random.Range(0, converseAudioClips.Length - 1);
             avatarAudioSource.clip = converseAudioClips[randomClip];
             avatarAudioSource.Play();
             Debug.Log("Playing converse" + other.tag);
         }
-       
-    }
-    void Update()
-    {
-        if (moveToTarget)
+        if (other.gameObject.tag == "SitPoint")
         {
-            AvatarWalking();
+            animator.Play("Stand To Sit");
+        }
+        else if (other.gameObject.tag == "TargetPoint")
+        {
+            //animator.Play("Stop Walking");
+            animator.Play("Idle");
+            gameObject.transform.LookAt(carLookPoint.transform);
+            reachedTarget = true;
+            tRP++;
         }
     }
+
+    private void Update()
+    {
+        if (tRP == 3)
+        {
+            Invoke("StandToSit", 1f);
+        }
+    }
+
+
 
     #region Avatar Methods
     /// <summary>
@@ -55,10 +73,10 @@ public class AvatarTargetPoints : MonoBehaviour
     /// </summary>
     public void AvatarWalking()
     {
-        GameObject currentTarget = targetPoints[Random.Range(0, 7)];
+        GameObject currentTarget = targetPoints[Random.Range(0, targetPoints.Length)];
         Debug.Log(currentTarget.name);
         meshAgent.destination = currentTarget.transform.position;
-        if (gameObject.transform.position != currentTarget.transform.position)
+        if (gameObject.transform.position != currentTarget.transform.position && tRP < 5)
         {
             gameObject.transform.LookAt(currentTarget.transform);
             meshAgent.speed = moveToTargetSpeed;
@@ -66,13 +84,36 @@ public class AvatarTargetPoints : MonoBehaviour
             animator.Play("Walking");
             avatarAudioSourceFoot.clip = avatarAudioClips[0];
             avatarAudioSource.Play();
-            
+
         }
         else if ((gameObject.transform.position.x - currentTarget.transform.position.x) < 0.8f)
         {
-            animator.Play("Waving");
+            animator.Play("Idle");
+            gameObject.transform.LookAt(carLookPoint.transform);
             reachedTarget = true;
         }
+
+        if (tRP == 3)
+        {
+            CancelInvoke("AvatarWalking");
+            
+        }
+
+    }
+    private void StandToSit()
+    {
+        
+
+
+            meshAgent.destination = seatPosition.transform.position;
+            gameObject.transform.LookAt(seatPosition.transform);
+            meshAgent.speed = moveToTargetSpeed;
+            //gameObject.transform.Translate(Vector3.forward * moveToTargetSpeed * Time.deltaTime);
+            animator.Play("Walking");
+            avatarAudioSourceFoot.clip = avatarAudioClips[0];
+            avatarAudioSource.Play();
+        
+        
     }
     #endregion
 

@@ -27,7 +27,7 @@ public class ParticleSystemIntervalPlay : MonoBehaviour
         foreach(AudioSource audi in confettiBlastAudio)
         {
             audi.Play();
-            Debug.Log(confettiBlastAudio.Length);
+            //Debug.Log(confettiBlastAudio.Length);
         }
     }
 }

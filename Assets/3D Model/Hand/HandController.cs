@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandController : MonoBehaviour
 {
-    ActionBasedController handController;
+    public ActionBasedController handController;
 
     public HandScript handScript;
 
@@ -20,6 +20,6 @@ public class HandController : MonoBehaviour
     {
         handScript.SetGrip(handController.selectAction.action.ReadValue<float>());
         handScript.SetTrigger(handController.activateAction.action.ReadValue<float>());
-        Debug.Log("Hand Controller");
+        //Debug.Log("Hand Controller");
     }
 }
